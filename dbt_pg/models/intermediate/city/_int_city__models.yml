@@ -1,0 +1,31 @@
+version: 2
+
+models:
+  - name: int_city__rank_per_population
+    columns:
+      - name: city_id
+        description: "The unique identifier for the city."
+        tests:
+          - not_null
+          - unique
+      - name: city
+        description: "The name of the city."
+        tests:
+          - not_null
+      - name: country_code
+        description: "The country code of the city."
+        tests:
+          - not_null
+      - name: city_district_name
+        description: "The district of the city."
+        tests:
+          - not_null
+      - name: city_population
+        description: "The population of the city."
+        tests:
+          - not_null
+      - name: city_population_rank_in_country
+        description: "The rank of the city based on the population in scope of the country where it is located."
+        tests:
+          - not_null
+          

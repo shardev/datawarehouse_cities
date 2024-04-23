@@ -1,0 +1,27 @@
+# todo: models definition for staging layer
+version: 2
+
+models:
+  - name: stg_world_db__cities
+    columns:
+      - name: city_id
+        description: "The unique identifier for the city."
+        tests:
+          - not_null
+          - unique
+      - name: city
+        description: "The name of the city."
+        tests:
+          - not_null
+      - name: country_code
+        description: "The country code of the city."
+        tests:
+          - not_null
+      - name: city_district_name
+        description: "The district of the city."
+        tests:
+          - not_null
+      - name: city_population
+        description: "The population of the city."
+        tests:
+          - not_null
