@@ -25,3 +25,48 @@ models:
         description: "The population of the city."
         tests:
           - not_null
+  
+  - name: stg_world_db__countries
+    columns:
+      - name: country_code
+        description: "The country code."
+        tests:
+          - not_null
+      - name: country
+        description: "The name of the country."
+        tests:
+          - not_null
+      - name: continent
+        description: "The continent where the country is located."
+        tests:
+          - not_null
+          - accepted_values: 
+              values: ['Asia', 'Europe', 'North America', 'Africa', 'Oceania', 'Antarctica', 'South America']
+              quote: true
+      - name: country_surface_area
+        description: "The surface area of the country."
+        tests:
+          - not_null
+      - name: country_indep_year
+        description: "The year of independence of the country."
+      - name: country_population
+        description: "The population of the country."
+        tests:
+          - not_null
+      - name: country_life_expectancy
+        description: "The life expectancy of the country."
+      - name: country_gross_national_product
+        description: "The gross national product of the country."
+      - name: country_government_form
+        description: "The form of government of the country."
+        tests:
+          - not_null
+      - name: country_capital
+        description: "The capital city of the country."
+     # Define foreign key constraint for 'country' model
+    fks:
+      - name: country_capital_fkey
+        columns:
+          - country_capital
+        table: stg_world_db__cities
+        references: city_id
