@@ -1,1 +1,46 @@
-# todo: model definition for int countrys
+version: 2
+
+models:
+  - name: int_country__rank_per_life_expectancy
+    description: "Model to calculate the rank of country life expectancy in the world and per continent."
+    columns:
+      - name: country_code
+        description: "The country code."
+        tests:
+          - not_null
+      - name: country
+        description: "The name of the country."
+        tests:
+          - not_null
+      - name: continent
+        description: "The continent where the country is located."
+        tests:
+          - not_null
+      - name: country_life_expectancy
+        description: "The life expectancy of the country."
+      - name: country_life_expectancy_rank_in_world
+        description: "The rank of country life expectancy in the world."
+      - name: country_life_expectancy_rank_per_continent
+        description: "The rank of country life expectancy per continent."
+
+  - name: int_country__gnp_calc
+    description: "Model to calculate the number of countries with a higher gross national product (GNP) and GNP percentile."
+    columns:
+      - name: country_code
+        description: "The country code."
+        tests:
+          - not_null
+      - name: country
+        description: "The name of the country."
+        tests:
+          - not_null
+      - name: country_gross_national_product
+        description: "The gross national product (GNP) of the country."
+      - name: num_of_countries_has_higher_gnp
+        description: "The number of countries with a higher GNP."
+      - name: country_gnp_percentile
+        description: "The GNP percentile of the country."
+      - name: country_highest_gnp_per_continent
+        description: "The name of country with the highest GNP per continent."
+        tests:
+          - not_null
