@@ -44,3 +44,23 @@ models:
         description: "The name of country with the highest GNP per continent."
         tests:
           - not_null
+
+  - name: int_country__language_rank
+    description: "Model combining countries official language and countries popularity language."
+    columns:
+      - name: country_code
+        description: "The country code."
+        tests:
+          - not_null
+      - name: country
+        description: "The name of the country."
+        tests:
+          - not_null
+      - name: official_language
+        description: "The official language of the country."
+        tests:
+          - not_null
+      - name: country_languages_stringify
+        description: "A string representation of languages and their popularity for each country."
+        tests:
+          - not_null
