@@ -1,0 +1,70 @@
+version: 2
+
+models:
+  - name: mart_city
+    description: "Mart model combining intermediate and staging components into final cities mart."
+    columns:
+      - name: city_id
+        description: "The ID of the city."
+        tests:
+          - not_null
+      - name: city
+        description: "The name of the city."
+        tests:
+          - not_null
+      - name: country_code
+        description: "The country code of the city."
+        tests:
+          - not_null
+      - name: city_district_name
+        description: "The district name of the city."
+      - name: city_population
+        description: "The population of the city."
+        tests:
+          - not_null
+      - name: city_population_rank_in_country
+        description: "The population rank of the city within its country."
+        tests:
+          - not_null
+      - name: country
+        description: "The name of the country."
+        tests:
+          - not_null
+      - name: continent
+        description: "The continent where the country is located."
+        tests:
+          - not_null
+      - name: country_surface_area
+        description: "The surface area of the country."
+        tests:
+          - not_null
+      - name: country_indep_year
+        description: "The year of independence of the country."
+      - name: country_population
+        description: "The population of the country."
+        tests:
+          - not_null
+      - name: country_government_form
+        description: "The form of government of the country."
+        tests:
+          - not_null
+      - name: country_capital
+        description: "The capital city of the country."
+      - name: country_gross_national_product
+        description: "The gross national product (GNP) of the country."
+      - name: num_of_countries_has_higher_gnp
+        description: "The number of countries with a higher GNP."
+      - name: country_gnp_percentile
+        description: "The GNP percentile of the country."
+      - name: country_highest_gnp_per_continent
+        description: "The country with the highest GNP per continent."
+      - name: country_life_expectancy
+        description: "The life expectancy of the country."
+      - name: country_life_expectancy_rank_in_world
+        description: "The rank of country life expectancy in the world."
+      - name: country_life_expectancy_rank_per_continent
+        description: "The rank of country life expectancy per continent."
+      - name: country_official_language
+        description: "The official language of the country."
+      - name: country_languages_stringify
+        description: "A string representation of languages and their popularity for the country."
