@@ -24,8 +24,8 @@ services:
     environment:
       PGADMIN_DEFAULT_EMAIL: admin@admin.com
       PGADMIN_DEFAULT_PASSWORD: root
-    # volumes: # test this if it will reflect all data
-    #   - /Users/aleksandar/Documents/visual studio code/dbt_pg_venv_docker/dbt_pg/seeds:/var/lib/pgadmin/storage/admin_admin.com/
+    volumes: # this will reflect all data from /seeds local machine
+      - /Users/aleksandar/Documents/visual studio code/dbt_pg_venv_docker/dbt_pg/seeds:/var/lib/pgadmin/storage/admin_admin.com/
     restart: unless-stopped
 
 volumes:
