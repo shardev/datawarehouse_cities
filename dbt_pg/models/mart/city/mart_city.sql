@@ -25,13 +25,18 @@ with mart_city as (
         int_country_life_exp.country_life_expectancy_rank_per_continent,
 
         int_country_language.country_official_language,
-        int_country_language.country_languages_stringify    
+        int_country_language.country_languages_stringify,
+
+        stg_country_locations.country_longitude, 
+        stg_country_locations.country_latitude
+
 
     from {{ ref('int_city__rank_per_population') }} as int_cities
     left join {{ ref('stg_world_db__countries') }} as stg_contries on int_cities.country_code = stg_contries.country_code
     left join {{ ref('int_country__gnp_calc') }} as int_country_gnp on int_cities.country_code = int_country_gnp.country_code
     left join {{ ref('int_country__rank_per_life_expectancy') }} as int_country_life_exp on int_cities.country_code = int_country_life_exp.country_code
     left join {{ ref('int_country__language_rank') }} as int_country_language on int_cities.country_code = int_country_language.country_code
+    left join {{ ref('stg_country_api__country_locations') }} as stg_country_locations on stg_contries.country = stg_country_locations.country
 )
 
 select * from mart_city
