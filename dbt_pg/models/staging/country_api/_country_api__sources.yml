@@ -1,0 +1,8 @@
+version: 2
+
+sources:
+  - name: country_api #must be name of the db also because we are ref it in models like this: source('pg_db', 'test')
+    schema: public
+    database: pg_db
+    tables:
+      - name: country_api__country_locations #reference to existing table in Postgres

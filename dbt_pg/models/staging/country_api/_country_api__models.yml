@@ -1,0 +1,18 @@
+version: 2
+
+models:
+  - name: stg_country_api__country_locations
+    description: 
+      A model to select country locations from a temporary staging table.
+    columns:
+      - name: country
+        description: The name of the country.
+        tests:
+          - unique
+      - name: country_iso
+        description: The ISO2 code of the country.
+      - name: country_longitude
+        description: The longitude of the country.
+      - name: country_latitude
+        description: The latitude of the country.
+   
