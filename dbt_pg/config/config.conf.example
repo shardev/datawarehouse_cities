@@ -1,0 +1,9 @@
+[database]
+db_host = localhost
+db_user = YOUR_DB_USER
+db_password = YOUR_DB_PASSWORD
+db_port = 5432
+db_name = pg_db
+
+[env]
+url = https://countriesnow.space/api/v0.1/countries/positions
