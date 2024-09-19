@@ -12,6 +12,7 @@ services:
       POSTGRES_DB: pg_db
     volumes:
       - postgres-data:/var/lib/postgresql/data
+      - ./dbt_pg/seeds:/docker-entrypoint-initdb.d/seeds  # Path corrected for seeds folder
     restart: unless-stopped
 
   pgadmin:
@@ -25,7 +26,25 @@ services:
       PGADMIN_DEFAULT_EMAIL: admin@admin.com
       PGADMIN_DEFAULT_PASSWORD: root
     volumes: # this will reflect all data from /seeds local machine
-      - volumes_dir_to_fetch_source_files
+      - /Users/aleksandar/Documents/visual studio code/dbt_pg_venv_docker/dbt_pg/seeds
+    restart: unless-stopped
+  
+  streamlit:
+    container_name: container-streamlit
+    image: python:3.9
+    command: >
+      bash -c "pip install streamlit psycopg2-binary matplotlib folium streamlit-folium && streamlit run /app/streamlit_app.py"
+    volumes:
+      - ./streamlit_app:/app
+    ports:
+      - "8501:8501"
+    depends_on:
+      - postgres
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: pg_db
+      POSTGRES_HOST: postgres
     restart: unless-stopped
 
 volumes:

@@ -1,7 +1,7 @@
 BEGIN;
 SET client_encoding TO 'UTF8';
 
-CREATE TABLE city (
+CREATE TABLE IF NOT EXISTS city (
     id integer NOT NULL,
     name text NOT NULL,
     country_code character(3) NOT NULL,
@@ -11,7 +11,12 @@ CREATE TABLE city (
 );
 COMMENT ON COLUMN city.local_name IS 'City local name';
 
-CREATE TABLE country (
+COPY city (id, name, country_code, district, population, local_name)
+FROM '/docker-entrypoint-initdb.d/seeds/city_utf8.csv'
+DELIMITER ','
+CSV HEADER;
+
+CREATE TABLE IF NOT EXISTS country (
     code character(3) NOT NULL,
     name text NOT NULL,
     continent text NOT NULL,
@@ -33,12 +38,22 @@ CREATE TABLE country (
 COMMENT ON COLUMN country.gnp IS 'GNP is Gross national product';
 COMMENT ON COLUMN country.code2 IS 'Following ISO 3166-1 alpha-2 code';
 
-CREATE TABLE country_language (
+COPY country (code, name, continent, region, surface_area, indep_year, population, life_expectancy, gnp, gnp_old, local_name, government_form, head_of_state, capital, code2)
+FROM '/docker-entrypoint-initdb.d/seeds/country_utf8.csv'
+DELIMITER ','
+CSV HEADER;
+
+CREATE TABLE IF NOT EXISTS country_language (
     country_code character(3) NOT NULL,
     "language" text NOT NULL,
     is_official boolean NOT NULL,
     percentage real NOT NULL
 );
+
+COPY country_language (country_code, language, is_official, percentage)
+FROM '/docker-entrypoint-initdb.d/seeds/country_language_utf8.csv'
+DELIMITER ','
+CSV HEADER;
 
 ALTER TABLE ONLY city
     ADD CONSTRAINT city_pkey PRIMARY KEY (id);

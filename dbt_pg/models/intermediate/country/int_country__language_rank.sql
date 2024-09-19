@@ -1,9 +1,10 @@
 with countries_official_language as (
     select 
         country_code, 
-        country_language as country_official_language 
+        string_agg(country_language, ',') as country_official_language 
     from {{ ref('stg_world_db__country_languages') }}
     where country_language_is_official = true
+    group by country_code
 ),
 
 countries_popularity_language as (
